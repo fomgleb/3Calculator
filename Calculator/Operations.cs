@@ -9,12 +9,15 @@ namespace Calculator
 {
     public partial class Form1
     {
-        private void Operator_Click(object sender, EventArgs e)
+        void PlusMinusTimesDivideDegree(Button button)
         {
-            Button button = (Button)sender;
-            labelClear();
             if (operation != ' ')
                 Equals();
+            if (thereResult == true)
+            {
+                thereResult = false;
+                labelSecondary.Text = "";
+            }
             if (num2 == 0)
             {
                 operation = Convert.ToChar(button.Text);
@@ -23,46 +26,68 @@ namespace Calculator
                 labelSecondary.Text += button.Text;
                 labelMain.Text = "0";
             }
-            if (num1 != 0 && operation != ' ')
-            {
-                num2 = Convert.ToDouble(labelMain.Text);
-            }
         }
 
-        private void buttonRoot_Click(object sender, EventArgs e)
+        void Root()
         {
             result = Math.Sqrt(Convert.ToDouble(labelMain.Text));
-            richTextBox1.AppendText($"Sqrt({labelMain.Text}) =  {result}" + "\n\n");
-            labelSecondary.Text = $"Sqrt({labelMain.Text}) =";
+            richTextBox1.AppendText($"sqrt({labelMain.Text}) =  {result}" + "\n\n");
+            labelSecondary.Text = $"sqrt({labelMain.Text}) =";
             labelMain.Text = Convert.ToString(result);
             thereResult = true;
         }
 
-        private void buttonNegate_Click(object sender, EventArgs e)
+        void Negate()
         {
             result = Convert.ToDouble(labelMain.Text) * -1;
-            richTextBox1.AppendText($"Reverse({labelMain.Text}) =  " + result + "\n\n");
-            labelSecondary.Text = "";
+            richTextBox1.AppendText($"negate({labelMain.Text}) =  " + result + "\n\n");
             labelMain.Text = Convert.ToString(result);
             thereResult = true;
         }
 
-        private void buttonOneDividedBy_Click(object sender, EventArgs e)
+        void OneDividedBy()
         {
             result = 1 / Convert.ToDouble(labelMain.Text);
             richTextBox1.AppendText($"1/{labelMain.Text} =  {result}" + "\n\n");
             labelSecondary.Text = $"1/{labelMain.Text}=";
             labelMain.Text = Convert.ToString(result);
+            thereResult = true;
+        }
+
+        void Percent()
+        {
+            if (operation == '+' || operation == '-')
+            {
+                result = num1 * (Convert.ToDouble(labelMain.Text) / 100);
+                labelMain.Text = Convert.ToString(result);
+            }
+            else if (operation == '×' || operation == '÷')
+            {
+                result = Convert.ToDouble(labelMain.Text) * 0.01;
+                labelMain.Text = Convert.ToString(result);
+            }
+        }
+
+        void Numbers(Button button)
+        {
+            if (button.Text == ",")
+            {
+                if (!labelMain.Text.Contains(","))
+                    labelMain.Text = labelMain.Text + button.Text;
+            }
+            else
+            {
+                if (labelMain.Text == "0")
+                    labelMain.Text = "";
+                labelMain.Text += button.Text;
+            }
         }
 
         public void Equals()
         {
             try
             {
-                labelClear();
                 num2 = Convert.ToDouble(labelMain.Text);
-
-                labelSecondary.Text += labelMain.Text + "=";
 
                 switch (operation)
                 {
@@ -75,9 +100,9 @@ namespace Calculator
                 }
                 if (thereResult == true)
                 {
+                    labelSecondary.Text += labelMain.Text + "=";
                     labelMain.Text = Convert.ToString(result);
 
-                    ButtonHistoryClear.Visible = true;
                     richTextBox1.AppendText(num1 + Convert.ToString(operation) + num2 + " =  ");
                     int len = Convert.ToString(num1 + operation + num2 + " = " + result).Length;
                     richTextBox1.AppendText(result + "\n\n");
@@ -88,26 +113,30 @@ namespace Calculator
                     num1 = 0;
                 num2 = 0;
                 operation = ' ';
-
-                labelSecondary.Text = "";
             }
             catch (Exception)
             {
             }
         }
 
-        public string Erase(string label)
+        void Erase()
         {
-            try
-            {
-                int l = label.Length - 1;
-                label = label.Remove(l);
-                return label;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
+            var len = labelMain.Text.Length;
+            if (labelMain.Text != "0")
+                labelMain.Text = labelMain.Text.Remove(len - 1);
+            if (labelMain.Text == "")
+                labelMain.Text = "0";
+        }
+
+        void EraseAll()
+        {
+            num1 = 0;
+            num2 = 0;
+            result = 0;
+            operation = ' ';
+            labelMain.Text = "0";
+            labelSecondary.Text = "";
+            thereResult = false;
         }
     }
 }
