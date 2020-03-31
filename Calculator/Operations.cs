@@ -21,36 +21,36 @@ namespace Calculator
             if (num2 == 0)
             {
                 operation = Convert.ToChar(button.Text);
-                num1 = Convert.ToDouble(labelMain.Text);
-                labelSecondary.Text += labelMain.Text;
+                num1 = Convert.ToDouble(TextBoxMain.Text);
+                labelSecondary.Text += TextBoxMain.Text;
                 labelSecondary.Text += button.Text;
-                labelMain.Text = "0";
+                TextBoxMain.Text = "0";
             }
         }
 
         void Root()
         {
-            result = Math.Sqrt(Convert.ToDouble(labelMain.Text));
-            richTextBox1.AppendText($"sqrt({labelMain.Text}) =  {result}" + "\n\n");
-            labelSecondary.Text = $"sqrt({labelMain.Text}) =";
-            labelMain.Text = Convert.ToString(result);
+            result = Math.Sqrt(Convert.ToDouble(TextBoxMain.Text));
+            richTextBox1.AppendText($"sqrt({TextBoxMain.Text}) =  {result}" + "\n\n");
+            labelSecondary.Text = $"sqrt({TextBoxMain.Text}) =";
+            TextBoxMain.Text = Convert.ToString(result);
             thereResult = true;
         }
 
         void Negate()
         {
-            result = Convert.ToDouble(labelMain.Text) * -1;
-            richTextBox1.AppendText($"negate({labelMain.Text}) =  " + result + "\n\n");
-            labelMain.Text = Convert.ToString(result);
+            result = Convert.ToDouble(TextBoxMain.Text) * -1;
+            richTextBox1.AppendText($"negate({TextBoxMain.Text}) =  " + result + "\n\n");
+            TextBoxMain.Text = Convert.ToString(result);
             thereResult = true;
         }
 
         void OneDividedBy()
         {
-            result = 1 / Convert.ToDouble(labelMain.Text);
-            richTextBox1.AppendText($"1/{labelMain.Text} =  {result}" + "\n\n");
-            labelSecondary.Text = $"1/{labelMain.Text}=";
-            labelMain.Text = Convert.ToString(result);
+            result = 1 / Convert.ToDouble(TextBoxMain.Text);
+            richTextBox1.AppendText($"1/{TextBoxMain.Text} =  {result}" + "\n\n");
+            labelSecondary.Text = $"1/{TextBoxMain.Text}=";
+            TextBoxMain.Text = Convert.ToString(result);
             thereResult = true;
         }
 
@@ -58,13 +58,13 @@ namespace Calculator
         {
             if (operation == '+' || operation == '-')
             {
-                result = num1 * (Convert.ToDouble(labelMain.Text) / 100);
-                labelMain.Text = Convert.ToString(result);
+                result = num1 * (Convert.ToDouble(TextBoxMain.Text) / 100);
+                TextBoxMain.Text = Convert.ToString(result);
             }
             else if (operation == '×' || operation == '÷')
             {
-                result = Convert.ToDouble(labelMain.Text) * 0.01;
-                labelMain.Text = Convert.ToString(result);
+                result = Convert.ToDouble(TextBoxMain.Text) * 0.01;
+                TextBoxMain.Text = Convert.ToString(result);
             }
         }
 
@@ -72,14 +72,14 @@ namespace Calculator
         {
             if (button.Text == ",")
             {
-                if (!labelMain.Text.Contains(","))
-                    labelMain.Text = labelMain.Text + button.Text;
+                if (!TextBoxMain.Text.Contains(","))
+                    TextBoxMain.Text += button.Text;
             }
             else
             {
-                if (labelMain.Text == "0")
-                    labelMain.Text = "";
-                labelMain.Text += button.Text;
+                if (TextBoxMain.Text == "0")
+                    TextBoxMain.Text = "";
+                TextBoxMain.Text += button.Text;
             }
         }
 
@@ -87,7 +87,7 @@ namespace Calculator
         {
             try
             {
-                num2 = Convert.ToDouble(labelMain.Text);
+                num2 = Convert.ToDouble(TextBoxMain.Text);
 
                 switch (operation)
                 {
@@ -96,12 +96,12 @@ namespace Calculator
                     case '×': result = num1 * num2; thereResult = true; break;
                     case '÷': result = num1 / num2; thereResult = true; break;
                     case '^': result = Math.Pow(num1, num2); thereResult = true; break;
-                    default: thereResult = false; break;
+                    default: break;
                 }
-                if (thereResult == true)
+                if (thereResult == true && operation != ' ')
                 {
-                    labelSecondary.Text += labelMain.Text + "=";
-                    labelMain.Text = Convert.ToString(result);
+                    labelSecondary.Text += TextBoxMain.Text + "=";
+                    TextBoxMain.Text = Convert.ToString(result);
 
                     richTextBox1.AppendText(num1 + Convert.ToString(operation) + num2 + " =  ");
                     int len = Convert.ToString(num1 + operation + num2 + " = " + result).Length;
@@ -121,11 +121,11 @@ namespace Calculator
 
         void Erase()
         {
-            var len = labelMain.Text.Length;
-            if (labelMain.Text != "0")
-                labelMain.Text = labelMain.Text.Remove(len - 1);
-            if (labelMain.Text == "")
-                labelMain.Text = "0";
+            var len = TextBoxMain.Text.Length;
+            if (TextBoxMain.Text != "0")
+                TextBoxMain.Text = TextBoxMain.Text.Remove(len - 1);
+            if (TextBoxMain.Text == "")
+                TextBoxMain.Text = "0";
         }
 
         void EraseAll()
@@ -134,7 +134,7 @@ namespace Calculator
             num2 = 0;
             result = 0;
             operation = ' ';
-            labelMain.Text = "0";
+            TextBoxMain.Text = "0";
             labelSecondary.Text = "";
             thereResult = false;
         }
