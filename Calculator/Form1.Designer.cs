@@ -600,8 +600,9 @@
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(4281, 6051);
             this.MinimumSize = new System.Drawing.Size(428, 605);
             this.Name = "Form1";
