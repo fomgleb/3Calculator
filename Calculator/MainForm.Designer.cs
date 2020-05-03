@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -74,9 +74,9 @@
             this.button1.TabStop = false;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button1.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button9
             // 
@@ -92,9 +92,9 @@
             this.button9.TabStop = false;
             this.button9.Text = "9";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button9.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button8
             // 
@@ -110,9 +110,9 @@
             this.button8.TabStop = false;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button8.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button7
             // 
@@ -128,9 +128,9 @@
             this.button7.TabStop = false;
             this.button7.Text = "7";
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button7.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button6
             // 
@@ -146,9 +146,9 @@
             this.button6.TabStop = false;
             this.button6.Text = "6";
             this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button6.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button5
             // 
@@ -164,9 +164,9 @@
             this.button5.TabStop = false;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button5.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button4
             // 
@@ -182,9 +182,9 @@
             this.button4.TabStop = false;
             this.button4.Text = "4";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button4.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button3
             // 
@@ -200,9 +200,9 @@
             this.button3.TabStop = false;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button3.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonComa
             // 
@@ -218,9 +218,9 @@
             this.buttonComa.TabStop = false;
             this.buttonComa.Text = ",";
             this.buttonComa.UseVisualStyleBackColor = false;
-            this.buttonComa.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.buttonComa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonComa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonComa.Click += new System.EventHandler(this.NumberButton_Click);
+            this.buttonComa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonComa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonEquals
             // 
@@ -235,9 +235,9 @@
             this.buttonEquals.TabIndex = 0;
             this.buttonEquals.Text = "=";
             this.buttonEquals.UseVisualStyleBackColor = false;
-            this.buttonEquals.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonEquals.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonEquals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonEquals.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonEquals.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonEquals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonPlus
             // 
@@ -253,9 +253,9 @@
             this.buttonPlus.TabStop = false;
             this.buttonPlus.Text = "+";
             this.buttonPlus.UseVisualStyleBackColor = false;
-            this.buttonPlus.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonPlus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonPlus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonPlus.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonPlus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonPlus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonMinus
             // 
@@ -271,9 +271,9 @@
             this.buttonMinus.TabStop = false;
             this.buttonMinus.Text = "-";
             this.buttonMinus.UseVisualStyleBackColor = false;
-            this.buttonMinus.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonMinus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonMinus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonMinus.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonMinus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonMinus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonTimes
             // 
@@ -289,9 +289,9 @@
             this.buttonTimes.TabStop = false;
             this.buttonTimes.Text = "×";
             this.buttonTimes.UseVisualStyleBackColor = false;
-            this.buttonTimes.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonTimes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonTimes.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonTimes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonDivide
             // 
@@ -307,9 +307,9 @@
             this.buttonDivide.TabStop = false;
             this.buttonDivide.Text = "÷";
             this.buttonDivide.UseVisualStyleBackColor = false;
-            this.buttonDivide.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonDivide.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonDivide.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonDivide.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonDivide.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonDivide.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonDegree
             // 
@@ -325,9 +325,9 @@
             this.buttonDegree.TabStop = false;
             this.buttonDegree.Text = "^";
             this.buttonDegree.UseVisualStyleBackColor = false;
-            this.buttonDegree.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonDegree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonDegree.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonDegree.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonDegree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonDegree.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonErase
             // 
@@ -343,9 +343,9 @@
             this.buttonErase.TabStop = false;
             this.buttonErase.Text = "⌫";
             this.buttonErase.UseVisualStyleBackColor = false;
-            this.buttonErase.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonErase.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonErase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonErase.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonErase.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonErase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonRoot
             // 
@@ -361,9 +361,9 @@
             this.buttonRoot.TabStop = false;
             this.buttonRoot.Text = "√";
             this.buttonRoot.UseVisualStyleBackColor = false;
-            this.buttonRoot.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonRoot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonRoot.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonRoot.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonRoot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonRoot.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // labelSecondary
             // 
@@ -390,9 +390,9 @@
             this.buttonRarselabelMain.TabStop = false;
             this.buttonRarselabelMain.Text = "CE";
             this.buttonRarselabelMain.UseVisualStyleBackColor = false;
-            this.buttonRarselabelMain.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonRarselabelMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonRarselabelMain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonRarselabelMain.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonRarselabelMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonRarselabelMain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonEraseAll
             // 
@@ -408,9 +408,9 @@
             this.buttonEraseAll.TabStop = false;
             this.buttonEraseAll.Text = "C";
             this.buttonEraseAll.UseVisualStyleBackColor = false;
-            this.buttonEraseAll.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonEraseAll.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonEraseAll.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonEraseAll.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonEraseAll.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonEraseAll.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonNegate
             // 
@@ -426,9 +426,9 @@
             this.buttonNegate.TabStop = false;
             this.buttonNegate.Text = "+/-";
             this.buttonNegate.UseVisualStyleBackColor = false;
-            this.buttonNegate.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonNegate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonNegate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonNegate.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonNegate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonNegate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button2
             // 
@@ -444,9 +444,9 @@
             this.button2.TabStop = false;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button2.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // button0
             // 
@@ -462,16 +462,16 @@
             this.button0.TabStop = false;
             this.button0.Text = "0";
             this.button0.UseVisualStyleBackColor = false;
-            this.button0.Click += new System.EventHandler(this.ButtonNumber_Click);
-            this.button0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.button0.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.button0.Click += new System.EventHandler(this.NumberButton_Click);
+            this.button0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.button0.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(760, 9);
+            this.label1.Location = new System.Drawing.Point(762, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 42);
             this.label1.TabIndex = 27;
@@ -491,9 +491,9 @@
             this.buttonOneDividedBy.TabStop = false;
             this.buttonOneDividedBy.Text = "1/x";
             this.buttonOneDividedBy.UseVisualStyleBackColor = false;
-            this.buttonOneDividedBy.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonOneDividedBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonOneDividedBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonOneDividedBy.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonOneDividedBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonOneDividedBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // buttonPercent
             // 
@@ -509,9 +509,9 @@
             this.buttonPercent.TabStop = false;
             this.buttonPercent.Text = "%";
             this.buttonPercent.UseVisualStyleBackColor = false;
-            this.buttonPercent.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.buttonPercent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.buttonPercent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.buttonPercent.Click += new System.EventHandler(this.OperationButton_Click);
+            this.buttonPercent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.buttonPercent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // richTextBox1
             // 
@@ -528,7 +528,7 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "";
-            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             // 
             // ButtonHistoryClear
             // 
@@ -544,9 +544,9 @@
             this.ButtonHistoryClear.TabStop = false;
             this.ButtonHistoryClear.Text = "Clear";
             this.ButtonHistoryClear.UseVisualStyleBackColor = false;
-            this.ButtonHistoryClear.Click += new System.EventHandler(this.ButtonOperation_Click);
-            this.ButtonHistoryClear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.ButtonHistoryClear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.ButtonHistoryClear.Click += new System.EventHandler(this.OperationButton_Click);
+            this.ButtonHistoryClear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.ButtonHistoryClear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // TextBoxMain
             // 
@@ -562,9 +562,9 @@
             this.TextBoxMain.TabStop = false;
             this.TextBoxMain.Text = "0";
             this.TextBoxMain.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TextBoxMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.TextBoxMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -605,10 +605,10 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(4281, 6051);
             this.MinimumSize = new System.Drawing.Size(428, 605);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Калькулятор";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
