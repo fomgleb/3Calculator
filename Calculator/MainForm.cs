@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -12,6 +13,7 @@ namespace Calculator
         public MainForm()
         {
             InitializeComponent();
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
             EraseAll();
         }
 
@@ -114,7 +116,11 @@ namespace Calculator
         void Root()
         {
             result = Math.Sqrt(Convert.ToDouble(TextBoxMain.Text));
-            richTextBox1.AppendText($"sqrt({TextBoxMain.Text}) =  {result}" + "\n\n");
+
+            string historySave = richTextBox1.Text;
+            richTextBox1.Text = $"sqrt({TextBoxMain.Text}) =  {result}" + "\n\n";
+            richTextBox1.Text += historySave;
+
             labelSecondary.Text = $"sqrt({TextBoxMain.Text}) =";
             TextBoxMain.Text = Convert.ToString(result);
             thereResult = true;
@@ -123,7 +129,11 @@ namespace Calculator
         void Negate()
         {
             result = Convert.ToDouble(TextBoxMain.Text) * -1;
-            richTextBox1.AppendText($"negate({TextBoxMain.Text}) =  " + result + "\n\n");
+
+            string historySave = richTextBox1.Text;
+            richTextBox1.Text = $"negate({TextBoxMain.Text}) =  " + result + "\n\n";
+            richTextBox1.Text += historySave;
+
             TextBoxMain.Text = Convert.ToString(result);
             thereResult = true;
         }
@@ -131,7 +141,11 @@ namespace Calculator
         void OneDividedBy()
         {
             result = 1 / Convert.ToDouble(TextBoxMain.Text);
-            richTextBox1.AppendText($"1/{TextBoxMain.Text} =  {result}" + "\n\n");
+
+            string historySave = richTextBox1.Text;
+            richTextBox1.Text = $"1/{TextBoxMain.Text} =  {result}" + "\n\n";
+            richTextBox1.Text += historySave;
+
             labelSecondary.Text = $"1/{TextBoxMain.Text}=";
             TextBoxMain.Text = Convert.ToString(result);
             thereResult = true;
@@ -186,9 +200,9 @@ namespace Calculator
                     labelSecondary.Text += TextBoxMain.Text + "=";
                     TextBoxMain.Text = Convert.ToString(result);
 
-                    richTextBox1.AppendText(num1 + Convert.ToString(operation) + num2 + " =  ");
-                    int len = Convert.ToString(num1 + operation + num2 + " = " + result).Length;
-                    richTextBox1.AppendText(result + "\n\n");
+                    string historySave = richTextBox1.Text;
+                    richTextBox1.Text = $"{num1} {operation} {num2} = {result}\n\n";
+                    richTextBox1.Text += historySave;
 
                     num1 = result;
                 }
@@ -200,6 +214,14 @@ namespace Calculator
             catch (Exception)
             {
             }
+        }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            if (Width < 650)
+                tableLayoutPanel4.ColumnCount = 1;
+            else
+                tableLayoutPanel4.ColumnCount = 2;
         }
 
         void Erase()
