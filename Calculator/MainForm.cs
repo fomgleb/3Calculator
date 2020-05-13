@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -8,241 +9,221 @@ namespace Calculator
     {
         double num1, num2, result;
         char operation;
-        bool thereResult;
+        bool numInMainTextBox = false;
+        string[] AllNumbersMassive = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "" };
+        string[] AllOperationsMassive = { "+", "-", "×", "÷", "^", "" };
 
         public MainForm()
         {
             InitializeComponent();
-            richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
-            EraseAll();
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Right; // Чтобы текст в "История" был справа
         }
 
+
+
         #region ButtonsClick
-        //Клик мышей по оператору
-        private void OperationButton_Click(object sender, EventArgs e)
+        //Нажатия мышей на кнопку
+        private void AllButtons_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
+            var button = (Button)sender;
 
             switch (button.Text)
             {
-                case "=": Equals(); break;
-                case "√": Root(); break;
-                case "%": Percent(); break;
-                case "1/x": OneDividedBy(); break;
-                case "+/-": Negate(); break;
-                case "C": EraseAll(); break;
-                case "⌫": Erase(); break;
-                case "CE": TextBoxMain.Text = "0"; break;
-                case "Clear": richTextBox1.Clear(); break;
-                default: PlusMinusTimesDivideDegree(button); break;
-            }
-        }
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "0":
+                    if (numInMainTextBox == false)
+                        mainTextBox.Text = button.Text;
+                    else
+                        mainTextBox.Text += button.Text;
+                    numInMainTextBox = true;
+                    break;
 
-        //Клик мышей по числу
-        void NumberButton_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            Numbers(button);
+                case ",":
+                    if (mainTextBox.Text[mainTextBox.Text.Length - 1] != ',')
+                    {
+                        mainTextBox.Text += ",";
+                        numInMainTextBox = true;
+                    }
+                    break;
+
+                case "+/-":
+                    if (mainTextBox.Text[0] == '-')
+                        mainTextBox.Text = mainTextBox.Text.Remove(0, 1);
+                    else
+                        mainTextBox.Text = mainTextBox.Text.Insert(0, "-"); 
+                    break;
+
+                case "1/x":
+                    if (mainTextBox.Text[mainTextBox.Text.Length - 1] != ',')
+                        mainTextBox.Text = Convert.ToString(1 / Convert.ToDouble(mainTextBox.Text));
+                    else
+                        mainTextBox.Text = Convert.ToString(1 / Convert.ToDouble(mainTextBox.Text.Remove(mainTextBox.Text.Length - 1)));
+                    break;
+
+                case "×":
+                case "÷":
+                case "+":
+                case "-":
+                case "^":
+                    if (mainTextBox.Text[mainTextBox.Text.Length - 1] == ',')
+                        mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1);
+
+                    if (secondaryLabel.Text != "" && mainTextBox.Text == "0" && secondaryLabel.Text[secondaryLabel.Text.Length - 3] != ' ')
+                    {
+                        char[] operations = { '×', '÷', '+', '-', '^' };
+                        foreach (var operation in operations)
+                            if (secondaryLabel.Text[secondaryLabel.Text.Length - 2] == operation)
+                            {
+                                secondaryLabel.Text = secondaryLabel.Text.Remove(secondaryLabel.Text.Length - 3);
+                                break;
+                            }
+                    }
+
+                    secondaryLabel.Text += $"{mainTextBox.Text} {button.Text} ";
+
+                    int spacesCount = 0;
+                    foreach (var symbol in secondaryLabel.Text)
+                        if (symbol == ' ')
+                            spacesCount++;
+
+                    if (spacesCount > 2)
+                        result = Calculate(secondaryLabel.Text);
+
+                    mainTextBox.Text = result.ToString();
+                    numInMainTextBox = false;
+                    break;
+            }
         }
 
         //Нажатие на клавиатуре
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char key = e.KeyChar;
-            Button button = new Button();
 
-            switch (key)
-            {
-                case '1': button.Text = "1"; Numbers(button); break;
-                case '2': button.Text = "2"; Numbers(button); break;
-                case '3': button.Text = "3"; Numbers(button); break;
-                case '4': button.Text = "4"; Numbers(button); break;
-                case '5': button.Text = "5"; Numbers(button); break;
-                case '6': button.Text = "6"; Numbers(button); break;
-                case '7': button.Text = "7"; Numbers(button); break;
-                case '8': button.Text = "8"; Numbers(button); break;
-                case '9': button.Text = "9"; Numbers(button); break;
-                case '0': button.Text = "0"; Numbers(button); break;
-                case ',': button.Text = ","; Numbers(button); break;
-
-                case '+': button.Text = "+"; PlusMinusTimesDivideDegree(button); break;
-                case '-': button.Text = "-"; PlusMinusTimesDivideDegree(button); break;
-                case '*': button.Text = "×"; PlusMinusTimesDivideDegree(button); break;
-                case '/': button.Text = "÷"; PlusMinusTimesDivideDegree(button); break;
-                case '^': button.Text = "^"; PlusMinusTimesDivideDegree(button); break;
-
-                case 'n': Negate(); break;
-                case '%': Percent(); break;
-                case 'r': Root(); break;
-                case 'd': OneDividedBy(); break;
-
-                case '\b': Erase(); break;
-
-                default: break;
-            }
         }
+
         //Нажатия на клавиатуре системных клавиш
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Escape: EraseAll(); break;
-                case Keys.Return: Equals(); break;
-                case Keys.Delete: richTextBox1.Text = ""; break;
-            }
+
         }
         #endregion
 
-        #region Operations
-        void PlusMinusTimesDivideDegree(Button button)
+        private double Calculate(string input)
         {
-            if (operation != ' ')
-                Equals();
-            if (thereResult == true)
+            double num1, num2;
+            double result = 0;
+            List<string> operationsList = new List<string>(input.Split(' '));
+            List<string> numbersList = new List<string>(input.Split(' '));
+
+            foreach (var operation in AllOperationsMassive)
+                numbersList.RemoveAll(x => x == operation);
+            foreach (var operation in AllOperationsMassive)
+                operationsList.RemoveAll(x => x != operation);
+
+            if (operationsList.Count >= numbersList.Count)
+                operationsList.RemoveAt(operationsList.Count - 1);
+
+            if (numbersList.Count > 1)
             {
-                thereResult = false;
-                labelSecondary.Text = "";
-            }
-            if (num2 == 0)
-            {
-                operation = Convert.ToChar(button.Text);
-                num1 = Convert.ToDouble(TextBoxMain.Text);
-                labelSecondary.Text += TextBoxMain.Text;
-                labelSecondary.Text += button.Text;
-                TextBoxMain.Text = "0";
-            }
-        }
-
-        void Root()
-        {
-            result = Math.Sqrt(Convert.ToDouble(TextBoxMain.Text));
-
-            string historySave = richTextBox1.Text;
-            richTextBox1.Text = $"sqrt({TextBoxMain.Text}) =  {result}" + "\n\n";
-            richTextBox1.Text += historySave;
-
-            labelSecondary.Text = $"sqrt({TextBoxMain.Text}) =";
-            TextBoxMain.Text = Convert.ToString(result);
-            thereResult = true;
-        }
-
-        void Negate()
-        {
-            result = Convert.ToDouble(TextBoxMain.Text) * -1;
-
-            string historySave = richTextBox1.Text;
-            richTextBox1.Text = $"negate({TextBoxMain.Text}) =  " + result + "\n\n";
-            richTextBox1.Text += historySave;
-
-            TextBoxMain.Text = Convert.ToString(result);
-            thereResult = true;
-        }
-
-        void OneDividedBy()
-        {
-            result = 1 / Convert.ToDouble(TextBoxMain.Text);
-
-            string historySave = richTextBox1.Text;
-            richTextBox1.Text = $"1/{TextBoxMain.Text} =  {result}" + "\n\n";
-            richTextBox1.Text += historySave;
-
-            labelSecondary.Text = $"1/{TextBoxMain.Text}=";
-            TextBoxMain.Text = Convert.ToString(result);
-            thereResult = true;
-        }
-
-        void Percent()
-        {
-            if (operation == '+' || operation == '-')
-            {
-                result = num1 * (Convert.ToDouble(TextBoxMain.Text) / 100);
-                TextBoxMain.Text = Convert.ToString(result);
-            }
-            else if (operation == '×' || operation == '÷')
-            {
-                result = Convert.ToDouble(TextBoxMain.Text) * 0.01;
-                TextBoxMain.Text = Convert.ToString(result);
-            }
-        }
-
-        void Numbers(Button button)
-        {
-            if (button.Text == ",")
-            {
-                if (!TextBoxMain.Text.Contains(","))
-                    TextBoxMain.Text += button.Text;
-            }
-            else
-            {
-                if (TextBoxMain.Text == "0")
-                    TextBoxMain.Text = "";
-                TextBoxMain.Text += button.Text;
-            }
-        }
-
-        public void Equals()
-        {
-            try
-            {
-                num2 = Convert.ToDouble(TextBoxMain.Text);
-
-                switch (operation)
+                while (operationsList.IndexOf("^") != -1)
                 {
-                    case '+': result = num1 + num2; thereResult = true; break;
-                    case '-': result = num1 - num2; thereResult = true; break;
-                    case '×': result = num1 * num2; thereResult = true; break;
-                    case '÷': result = num1 / num2; thereResult = true; break;
-                    case '^': result = Math.Pow(num1, num2); thereResult = true; break;
-                    default: break;
+                    int indexOfOpeation = operationsList.IndexOf("^");
+                    int indexOfNum1 = indexOfOpeation;
+                    int indexOfNum2 = indexOfOpeation + 1;
+                    num1 = Convert.ToDouble(numbersList[indexOfNum1]);
+                    num2 = Convert.ToDouble(numbersList[indexOfNum2]);
+                    result = Math.Pow(num1, num2);
+
+                    numbersList.RemoveAt(indexOfNum2);
+                    numbersList.RemoveAt(indexOfNum1);
+
+                    operationsList.RemoveAt(indexOfOpeation);
+
+                    numbersList.Insert(indexOfNum1, result.ToString());
                 }
-                if (thereResult == true && operation != ' ')
+
+                while (operationsList.IndexOf("×") != -1 || operationsList.IndexOf("÷") != -1)
                 {
-                    labelSecondary.Text += TextBoxMain.Text + "=";
-                    TextBoxMain.Text = Convert.ToString(result);
+                    if ((operationsList.IndexOf("÷") > operationsList.IndexOf("×") && operationsList.IndexOf("×") != -1) || operationsList.IndexOf("÷") == -1)
+                    {
+                        int indexOfOpeation = operationsList.IndexOf("*");
+                        int indexOfNum1 = indexOfOpeation;
+                        int indexOfNum2 = indexOfOpeation + 1;
+                        num1 = Convert.ToDouble(numbersList[indexOfNum1]);
+                        num2 = Convert.ToDouble(numbersList[indexOfNum2]);
+                        result = num1 * num2;
 
-                    string historySave = richTextBox1.Text;
-                    richTextBox1.Text = $"{num1} {operation} {num2} = {result}\n\n";
-                    richTextBox1.Text += historySave;
+                        numbersList.RemoveAt(indexOfNum2);
+                        numbersList.RemoveAt(indexOfNum1);
 
-                    num1 = result;
+                        operationsList.RemoveAt(indexOfOpeation);
+
+                        numbersList.Insert(indexOfNum1, result.ToString());
+                    }
+                    else if ((operationsList.IndexOf("×") > operationsList.IndexOf("÷") && operationsList.IndexOf("÷") != -1) || operationsList.IndexOf("×") == -1)
+                    {
+                        int indexOfOpeation = operationsList.IndexOf("÷");
+                        int indexOfNum1 = indexOfOpeation;
+                        int indexOfNum2 = indexOfOpeation + 1;
+                        num1 = Convert.ToDouble(numbersList[indexOfNum1]);
+                        num2 = Convert.ToDouble(numbersList[indexOfNum2]);
+                        result = num1 / num2;
+
+                        numbersList.RemoveAt(indexOfNum2);
+                        numbersList.RemoveAt(indexOfNum1);
+
+                        operationsList.RemoveAt(indexOfOpeation);
+
+                        numbersList.Insert(indexOfNum1, result.ToString());
+                    }
                 }
-                else
-                    num1 = 0;
-                num2 = 0;
-                operation = ' ';
+
+                while (operationsList.IndexOf("+") != -1 || operationsList.IndexOf("-") != -1)
+                {
+                    if ((operationsList.IndexOf("-") > operationsList.IndexOf("+") && operationsList.IndexOf("+") != -1) || operationsList.IndexOf("-") == -1)
+                    {
+                        int indexOfOpeation = operationsList.IndexOf("+");
+                        int indexOfNum1 = indexOfOpeation;
+                        int indexOfNum2 = indexOfOpeation + 1;
+                        num1 = Convert.ToDouble(numbersList[indexOfNum1]);
+                        num2 = Convert.ToDouble(numbersList[indexOfNum2]);
+                        result = num1 + num2;
+
+                        numbersList.RemoveAt(indexOfNum2);
+                        numbersList.RemoveAt(indexOfNum1);
+
+                        operationsList.RemoveAt(indexOfOpeation);
+
+                        numbersList.Insert(indexOfNum1, result.ToString());
+                    }
+                    else if ((operationsList.IndexOf("+") > operationsList.IndexOf("-") && operationsList.IndexOf("-") != -1) || operationsList.IndexOf("+") == -1)
+                    {
+                        int indexOfOpeation = operationsList.IndexOf("-");
+                        int indexOfNum1 = indexOfOpeation;
+                        int indexOfNum2 = indexOfOpeation + 1;
+                        num1 = Convert.ToDouble(numbersList[indexOfNum1]);
+                        num2 = Convert.ToDouble(numbersList[indexOfNum2]);
+                        result = num1 - num2;
+
+                        numbersList.RemoveAt(indexOfNum2);
+                        numbersList.RemoveAt(indexOfNum1);
+
+                        operationsList.RemoveAt(indexOfOpeation);
+
+                        numbersList.Insert(indexOfNum1, result.ToString());
+                    }
+                }
             }
-            catch (Exception)
-            {
-            }
-        }
 
-        private void MainForm_SizeChanged(object sender, EventArgs e)
-        {
-            if (Width < 650)
-                tableLayoutPanel4.ColumnCount = 1;
-            else
-                tableLayoutPanel4.ColumnCount = 2;
+            return result;
         }
-
-        void Erase()
-        {
-            var len = TextBoxMain.Text.Length;
-            if (TextBoxMain.Text != "0")
-                TextBoxMain.Text = TextBoxMain.Text.Remove(len - 1);
-            if (TextBoxMain.Text == "")
-                TextBoxMain.Text = "0";
-        }
-
-        void EraseAll()
-        {
-            num1 = 0;
-            num2 = 0;
-            result = 0;
-            operation = ' ';
-            TextBoxMain.Text = "0";
-            labelSecondary.Text = "";
-            thereResult = false;
-        }
-        #endregion
     }
 }
