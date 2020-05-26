@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -65,7 +64,7 @@ namespace Calculator
                     break;
 
                 case "+/-": // переводит число в его негативный вариант. Если число положительное то переводит его в отрицательное и наоборот.
-                    if (mainTextBox.Text != "0")
+                    if (mainTextBox.Text != "0" && mainTextBox.Text != "0,")
                     {
                         if (mainTextBox.Text[0] == '-') // если в главной строке в её начале есть символ "-"
                             mainTextBox.Text = mainTextBox.Text.Remove(0, 1); // мы его убераем
