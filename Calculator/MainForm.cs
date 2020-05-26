@@ -181,6 +181,10 @@ namespace Calculator
                         mainTextBox.Text = Convert.ToString(Convert.ToDouble(mainTextBox.Text) / 100);
 
                     break;
+
+                case "Clear":
+                    richTextBox1.Text = "";
+                    break;
             }
         }
 
