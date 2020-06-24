@@ -8,7 +8,6 @@ namespace Calculator
     public partial class MainForm : Form
     {
         bool numInMainTextBox = false;
-        
 
         public MainForm()
         {
@@ -30,7 +29,46 @@ namespace Calculator
         {
             var button = (Button)sender; // нажатая кнопка на форме
 
-            switch (button.Text)
+            ClickProcessing(button.Text);
+        }
+
+        private void KeyBoard_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case '1': ClickProcessing("1"); break;
+                case '2': ClickProcessing("2"); break;
+                case '3': ClickProcessing("3"); break;
+                case '4': ClickProcessing("4"); break;
+                case '5': ClickProcessing("5"); break;
+                case '6': ClickProcessing("6"); break;
+                case '7': ClickProcessing("7"); break;
+                case '8': ClickProcessing("8"); break;
+                case '9': ClickProcessing("9"); break;
+                case '0': ClickProcessing("0"); break;
+
+                case ',': ClickProcessing(","); break;
+                case 'n': ClickProcessing("+/-"); break;
+                case 'd': ClickProcessing("1/x"); break;
+                case 'r': ClickProcessing("√"); break;
+                case '%': ClickProcessing("%"); break;
+
+                case '+': ClickProcessing("+"); break;
+                case '-': ClickProcessing("-"); break;
+                case '*': ClickProcessing("×"); break;
+                case '/': ClickProcessing("÷"); break;
+                case '^': ClickProcessing("^"); break;
+
+                case (char)Keys.Return: ClickProcessing("="); break;
+                case (char)Keys.Delete: ClickProcessing("C"); break;
+                case (char)Keys.Back: ClickProcessing("⌫"); break;
+            }
+        }
+        #endregion
+
+        private void ClickProcessing(string clickText)
+        {
+            switch (clickText)
             {
                 case "1": // просто записывает цифры в главную строку
                 case "2":
@@ -42,16 +80,16 @@ namespace Calculator
                 case "8":
                 case "9":
                 case "0":
-                    if (mainTextBox.Text == "0" && button.Text == "0") // если текст в  главной строке "0" и нажатая кнопка 0
+                    if (mainTextBox.Text == "0" && clickText == "0") // если текст в  главной строке "0" и нажатая кнопка 0
                         break; // прекращаем работу кейсов
 
                     if (secondaryLabel.Text != "" && secondaryLabel.Text[secondaryLabel.Text.Length - 2] == '=') // если последний символ во втророй строке это знак равно
                         secondaryLabel.Text = ""; // то стераем всё в ней.
 
                     if (numInMainTextBox == false) // если числа в текстБоксе нету
-                        mainTextBox.Text = button.Text; // записываем число в текстБокс которое написано на нажатой кнопке
+                        mainTextBox.Text = clickText; // записываем число в текстБокс которое написано на нажатой кнопке
                     else
-                        mainTextBox.Text += button.Text; // иначе не изменяем текст в текстБокс, а добавляем
+                        mainTextBox.Text += clickText; // иначе не изменяем текст в текстБокс, а добавляем
                     numInMainTextBox = true; // в переменную записываем значение истиное, т.к. число там теперь есть.
                     break;
 
@@ -92,7 +130,7 @@ namespace Calculator
 
                     if (numInMainTextBox == false && secondaryLabel.Text != "" && secondaryLabel.Text[secondaryLabel.Text.Length - 2] == '=')
                     {
-                        secondaryLabel.Text = $"{mainTextBox.Text} {button.Text} ";
+                        secondaryLabel.Text = $"{mainTextBox.Text} {clickText} ";
                     }
                     else if (numInMainTextBox == false && secondaryLabel.Text != "") // если числа в главной строке нету И во второй строке не пусто
                     {
@@ -100,12 +138,12 @@ namespace Calculator
                             if (operation == secondaryLabel.Text[secondaryLabel.Text.Length - 2]) // если предпоследний символ во второй строке это тот что в массиве
                             {
                                 secondaryLabel.Text = secondaryLabel.Text.Remove(secondaryLabel.Text.Length - 3); // мы его удаляем
-                                secondaryLabel.Text += $" {button.Text} "; // и добавляем свой что написан на нажатой кнопке
+                                secondaryLabel.Text += $" {clickText} "; // и добавляем свой что написан на нажатой кнопке
                                 break; // прекращаем выполнение цикла
                             }
                     }
                     else // иначе(если число в главной строке есть)
-                        secondaryLabel.Text += $"{mainTextBox.Text} {button.Text} "; // добавляем к второй строке значение из главной + текст на нажатой кнопке(оператор)
+                        secondaryLabel.Text += $"{mainTextBox.Text} {clickText} "; // добавляем к второй строке значение из главной + текст на нажатой кнопке(оператор)
 
                     int operationsInSecondaryLabel = 0; // сколько операторов в строке
                     foreach (var operation in operations) // проходимся по каждому оператору в массиве операторов
@@ -153,6 +191,9 @@ namespace Calculator
                     break;
 
                 case "⌫":
+                    if (mainTextBox.Text.Length == 1)
+                        mainTextBox.Text = "0";
+
                     if (mainTextBox.Text != "0")
                         mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1);
                     break;
@@ -187,19 +228,6 @@ namespace Calculator
                     break;
             }
         }
-
-        //Нажатие на клавиатуре
-        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        //Нажатия на клавиатуре системных клавиш
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-        #endregion
 
         private double Calculate(string input) // input - строка с которой будут проводитя манипуляции
         {
@@ -314,7 +342,5 @@ namespace Calculator
 
             return result;
         }
-
-        
     }
 }
