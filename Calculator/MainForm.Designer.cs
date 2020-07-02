@@ -687,7 +687,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(428, 605);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Калькулятор";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyBoard_KeyPress);
             this.tableLayoutPanel2.ResumeLayout(false);

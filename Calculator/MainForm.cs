@@ -13,6 +13,8 @@ namespace Calculator
         {
             InitializeComponent();
             richTextBox1.SelectionAlignment = HorizontalAlignment.Right; // Чтобы текст в "История" был справа
+            Width = Properties.Settings.Default.WidthForm;
+            Height = Properties.Settings.Default.HeightForm;
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
@@ -196,6 +198,9 @@ namespace Calculator
 
                     if (mainTextBox.Text != "0")
                         mainTextBox.Text = mainTextBox.Text.Remove(mainTextBox.Text.Length - 1);
+
+                    if (mainTextBox.Text == "0")
+                        numInMainTextBox = false;
                     break;
 
                 case "√":
@@ -341,6 +346,13 @@ namespace Calculator
             }
 
             return result;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.HeightForm = Height;
+            Properties.Settings.Default.WidthForm = Width;
+            Properties.Settings.Default.Save();
         }
     }
 }
